@@ -7,6 +7,19 @@ on:
       - main
 
 jobs:
+  formatting:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Check Terraform code is formatted
+        uses: docker://hashicorp/terraform:latest
+        with:
+          entrypoint: terraform
+          args: fmt -check -diff -recursive
+
   validate:
     name: Validate
     runs-on: ubuntu-latest
