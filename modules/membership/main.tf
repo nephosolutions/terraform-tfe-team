@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-output "id" {
-  description = "The team identifier."
-  value       = tfe_team.team.id
+data "tfe_organization_membership" "user" {
+  for_each = var.members
+
+  organization = var.organization
+  email        = each.key
 }
 
-output "membership_ids" {
-  description = "IDs of team memberships."
-  value       = module.team_membership.membership_ids
-}
+resource "tfe_team_organization_members" "team_membership" {
+  for_each = data.tfe_organization_membership.user
 
-output "name" {
-  description = "The team name."
-  value       = tfe_team.team.name
+  team_id                     = var.team_id
+  organization_membership_ids = [for k, v in data.tfe_organization_membership.user : v.id]
 }

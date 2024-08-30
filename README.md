@@ -32,15 +32,15 @@ limitations under the License.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_team_membership"></a> [team\_membership](#module\_team\_membership) | ./modules/membership | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [tfe_team.team](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team) | resource |
-| [tfe_team_organization_members.team_membership](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_organization_members) | resource |
-| [tfe_organization_membership.user](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/organization_membership) | data source |
 
 ## Inputs
 
@@ -56,5 +56,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The team identifier. |
+| <a name="output_membership_ids"></a> [membership\_ids](#output\_membership\_ids) | IDs of team memberships. |
 | <a name="output_name"></a> [name](#output\_name) | The team name. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

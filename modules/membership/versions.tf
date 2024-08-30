@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-output "id" {
-  description = "The team identifier."
-  value       = tfe_team.team.id
-}
+terraform {
+  required_version = ">= 1.1.0"
 
-output "membership_ids" {
-  description = "IDs of team memberships."
-  value       = module.team_membership.membership_ids
-}
-
-output "name" {
-  description = "The team name."
-  value       = tfe_team.team.name
+  required_providers {
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = ">= 0.41"
+    }
+  }
 }

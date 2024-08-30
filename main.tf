@@ -32,16 +32,15 @@ resource "tfe_team" "team" {
   }
 }
 
-data "tfe_organization_membership" "user" {
-  for_each = var.members
+module "team_membership" {
+  source = "./modules/membership"
 
   organization = var.organization
-  email        = each.key
+  team_id      = tfe_team.team.id
+  members      = var.members
 }
 
-resource "tfe_team_organization_members" "team_membership" {
-  for_each = data.tfe_organization_membership.user
-
-  team_id                     = tfe_team.team.id
-  organization_membership_ids = [for k, v in data.tfe_organization_membership.user : v.id]
+moved {
+  from = tfe_team_organization_members.team_membership
+  to   = module.team_membership.tfe_team_organization_members.team_membership
 }

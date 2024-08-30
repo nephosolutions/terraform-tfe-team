@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-output "id" {
-  description = "The team identifier."
-  value       = tfe_team.team.id
+variable "members" {
+  description = "Set of team members."
+  type        = set(string)
+  nullable    = false
+  default     = []
 }
 
-output "membership_ids" {
-  description = "IDs of team memberships."
-  value       = module.team_membership.membership_ids
+variable "organization" {
+  description = "Name of the Terraform Cloud organization."
+  type        = string
+  default     = null
 }
 
-output "name" {
-  description = "The team name."
-  value       = tfe_team.team.name
+variable "team_id" {
+  description = "ID of the team."
+  type        = string
+  nullable    = false
 }
